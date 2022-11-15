@@ -1,0 +1,40 @@
+<div style="width: 500px;">
+
+
+  <div>
+    <input type="text" [value]="100" #textInput>
+    <button (click)="submit(textInput.value)">Submit</button>
+
+    <button (click)="destroyChild()">Destroy</button>
+  </div>
+
+  <hr>
+
+  <button (click)="changeFirstChild()">Change first Item</button>
+
+  <ng-container *ngIf="!childDestroyed">
+    <ng-container *ngFor="let child of children; let i = index">
+      <app-child (deleteItem)="deleteItem(child)">
+<!--                  <div [ngStyle]="{-->
+<!--                    backgroundColor: child == '50' ? 'blue' : 'white',-->
+<!--                    border: child == '50' ? '5px solid black' : 'none'-->
+<!--                  }">{{child}}</div>-->
+<!--        <div [ngClass]="{-->
+<!--            'blue': child == '50'-->
+<!--        }">{{child}}</div>-->
+        <div appHighlighter="blue" [fontSize]="40">{{child}}</div>
+        <div #conditionContent>
+          Content child text
+        </div>
+      </app-child>
+    </ng-container>
+  </ng-container>
+</div>
+
+
+<!--<app-child [text1]="changedText" >-->
+<!--  &lt;!&ndash;  <div>{{textValue}}</div>&ndash;&gt;-->
+<!--  &lt;!&ndash;  <ng-template #conditionContent>&ndash;&gt;-->
+<!--  &lt;!&ndash;    <div>Template</div>&ndash;&gt;-->
+<!--  &lt;!&ndash;  </ng-template>&ndash;&gt;-->
+<!--</app-child>-->
